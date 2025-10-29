@@ -18,31 +18,56 @@ Welcome! This folder contains material for an introductory session on Jupyter no
 
 ## Prerequisites
 - A computer running Windows 10/11, macOS 12+, or a modern Linux distribution.
-- Internet access to download Python and Jupyter.
+- Internet access to download software.
 - 3 GB of free disk space.
-- Comfort using a terminal/PowerShell for basic copy-paste commands (no coding experience required).
+- Willingness to copy and paste a few commands into a terminal/PowerShell window (no coding experience required).
+- Git installed so you can download (clone) class materials—see the quick guide below.
+
+## Install Git (All Platforms)
+Git is the tool we use to copy the class repository and keep it updated. Install it once, and you are good to go for future workshops.
+
+- **Windows**: Visit <https://git-scm.com/download/win> and click the download button. Run the installer, accept the license, leave the defaults selected, and finish. After installation you will have *Git Bash* (a terminal) and Git integrated into Windows Terminal/PowerShell.
+- **macOS**: Open Terminal and run `brew install git` (or install Homebrew first—see the macOS section). Alternatively, install Apple’s Command Line Tools by running `xcode-select --install`, which includes Git.
+- **Linux**: Use your package manager, e.g., on Ubuntu/Debian run `sudo apt install git`.
+
+Once Git is installed, you can clone this project whenever you like:
+
+```bash
+git clone https://github.com/pb360/tech_teaching.git
+```
+
+This creates a `tech_teaching` folder containing the notebook, helper script, and README.
 
 ## Setup: Windows
-1. **Install Python**
-   - Visit <https://www.python.org/downloads/windows/> and download the latest Python 3 installer.
-   - Run the installer, check **Add Python to PATH**, and accept defaults (optional: enable `py` launcher).
-2. **Open PowerShell**
-   - Press `Win + X`, choose *Windows PowerShell* (Admin), and paste the commands below.
-3. **Create a Virtual Environment**
+1. **Download Python 3**
+   - Go to <https://www.python.org/downloads/windows/> and click the big yellow *Download Python 3.x* button.
+   - When the installer opens, check the box labeled **Add Python to PATH** (very important) and click *Install Now*. Wait for it to finish, then close the window.
+2. **Open a Terminal You Like**
+   - Click *Start*, type `Windows Terminal` (or `PowerShell`), and press *Enter*. You can also use *Git Bash* if you prefer—everything below works there too.
+3. **Create a Workspace Folder**
+   - Choose where you want to keep class files and run:
+     ```powershell
+     cd %USERPROFILE%\Documents
+     git clone https://github.com/pb360/tech_teaching.git
+     cd tech_teaching
+     ```
+   - If you already cloned the project earlier, just `cd` into the folder instead of cloning again.
+4. **Create and Activate a Virtual Environment**
    ```powershell
-   python -m venv %USERPROFILE%\jupyter-env
-   %USERPROFILE%\jupyter-env\Scripts\Activate.ps1
+   python -m venv .venv
+   .\.venv\Scripts\Activate.ps1
    ```
-4. **Install JupyterLab and Helpers**
+   - The prompt should now start with `(.venv)` to show the environment is active. If PowerShell blocks the command, run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once and try again.
+5. **Install JupyterLab and Required Packages**
    ```powershell
    python -m pip install --upgrade pip
    pip install jupyterlab nbformat requests jupyter-server ipykernel
    ```
-5. **Launch JupyterLab**
+6. **Launch JupyterLab**
    ```powershell
    jupyter lab
    ```
-   The default browser opens to the Jupyter interface. Create a new notebook (`Python 3 (ipykernel)`) and you are ready.
+   - Your default browser will open automatically. Choose *File → Open* and select `intro-class.ipynb` to begin exploring.
 
 ## Setup: macOS
 1. **Install Homebrew** (skip if already installed)
@@ -50,21 +75,28 @@ Welcome! This folder contains material for an introductory session on Jupyter no
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
    After installation, follow the on-screen `eval` command to add Homebrew to your shell.
-2. **Install Python 3**
+2. **Install Git and Python 3**
    ```bash
-   brew install python
+   brew install git python
    ```
-3. **Create a Virtual Environment**
+3. **Clone the Class Materials (or update them)**
+   ```bash
+   cd ~/Documents
+   git clone https://github.com/pb360/tech_teaching.git
+   cd tech_teaching
+   ```
+   If the folder already exists, use `cd tech_teaching` and `git pull` to grab updates instead of cloning again.
+4. **Create a Virtual Environment**
    ```bash
    python3 -m venv ~/jupyter-env
    source ~/jupyter-env/bin/activate
    ```
-4. **Install JupyterLab and Helpers**
+5. **Install JupyterLab and Helpers**
    ```bash
    python -m pip install --upgrade pip
    pip install jupyterlab nbformat requests jupyter-server ipykernel
    ```
-5. **Launch JupyterLab**
+6. **Launch JupyterLab**
    ```bash
    jupyter lab
    ```
@@ -73,19 +105,27 @@ Welcome! This folder contains material for an introductory session on Jupyter no
 ## Setup: Linux (Ubuntu/Debian)
 1. **Update System Packages**
    ```bash
-   sudo apt update && sudo apt install -y python3 python3-venv python3-pip
+   sudo apt update
+   sudo apt install -y git python3 python3-venv python3-pip
    ```
-2. **Create a Virtual Environment**
+2. **Clone the Class Materials**
+   ```bash
+   cd ~
+   git clone https://github.com/pb360/tech_teaching.git
+   cd tech_teaching
+   ```
+   Already have the folder? Run `cd tech_teaching && git pull` instead.
+3. **Create a Virtual Environment**
    ```bash
    python3 -m venv ~/jupyter-env
    source ~/jupyter-env/bin/activate
    ```
-3. **Install JupyterLab and Helpers**
+4. **Install JupyterLab and Helpers**
    ```bash
    python -m pip install --upgrade pip
    pip install jupyterlab nbformat requests jupyter-server ipykernel
    ```
-4. **Launch JupyterLab**
+5. **Launch JupyterLab**
    ```bash
    jupyter lab
    ```
